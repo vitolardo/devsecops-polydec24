@@ -54,6 +54,3 @@ This exercice is NOT in the previous tutorial but based on the previous exercice
 - Workflow code
 - URL of the BUILD (https://github.com/...../actions/runs/12098085715)
 - SAST finding (file + line + CWE)
-
-## Original TUTORIAL from Github
-[Original link](https://resources.github.com/learn/pathways/automation/essentials/building-a-workflow-with-github-actions/)
