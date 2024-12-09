@@ -1,5 +1,4 @@
 name: Build, Test, and SCA
-
 on:
   push:
     branches:
@@ -7,34 +6,27 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   build-test-sca:
     runs-on: ubuntu-latest
-
     steps:
       # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
-
       # Step 2: Setup Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v3
-
       # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
-
       # Step 4: Run SCA
       - name: Run SCA
         run: |
           npm audit --production || exit 1
         continue-on-error: false
-
       # Step 5: Build the application
       - name: Build the application
         run: npm run build
-
       # Step 6: Run tests
       - name: Run tests
         run: npm test
