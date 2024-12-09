@@ -16,19 +16,19 @@ jobs:
       # Step 2: Setup Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v3
-        with:
-          node-version: 16
       # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
-      # Step 4: Run SAST analysis
+      # Step 4: Install Betterer
+      - name: Install Betterer
+        run: npm install --save-dev @betterer/cli
+      # Step 5: Run SAST analysis with Betterer
       - name: Run SAST (Betterer)
-        run: |
-          npx betterer start || exit 1
+        run: npx betterer start --watch || exit 1
         continue-on-error: false
-      # Step 5: Build the application
+      # Step 6: Build the application
       - name: Build the application
         run: npm run build
-      # Step 6: Run tests
+      # Step 7: Run tests
       - name: Run tests
         run: npm test
