@@ -10,25 +10,18 @@ jobs:
   build-test-sast:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
-      # Step 2: Setup Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v3
-      # Step 3: Install dependencies
+      - name: Bearer
+        uses: actions/checkout@v3
       - name: Install dependencies
         run: npm install
-      # Step 4: Install Betterer
-      - name: Install Betterer
-        run: npm install --save-dev @betterer/cli
-      # Step 5: Run SAST analysis with Betterer
-      - name: Run SAST (Betterer)
-        run: npx betterer start --watch || exit 1
-        continue-on-error: false
-      # Step 6: Build the application
+      - name: Run Report
+        id: report
+        uses: bearer/bearer-action@v2
       - name: Build the application
         run: npm run build
-      # Step 7: Run tests
       - name: Run tests
         run: npm test
